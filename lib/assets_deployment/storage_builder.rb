@@ -17,8 +17,7 @@ module AssetsDeployment
       case [@platform, @name]
       when ['AWS', 'S3']
         Storage::AwsS3.new(
-          access_key_id: @credentials[:access_key_id],
-          secret_access_key: @credentials[:secret_access_key],
+          credentials: @credentials,
           bucket: @options[:bucket],
           prefix_key: @options[:prefix_key]
         )

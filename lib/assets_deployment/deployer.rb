@@ -12,6 +12,8 @@ module AssetsDeployment
       @storage.upload(files)
     end
 
+    private
+
     def files
       @files ||= @prefixes.flat_map do |prefix|
         Dir.glob(@root_path.join(prefix).join('**', '**')).map do |path|

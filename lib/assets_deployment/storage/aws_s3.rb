@@ -3,9 +3,8 @@ require 'aws-sdk'
 module AssetsDeployment
   module Storage
     class AwsS3 < Base
-      def initialize(access_key_id: nil, secret_access_key: nil, bucket: nil, prefix_key: nil)
-        @access_key_id = access_key_id || ENV['AWS_ACCESS_KEY_ID']
-        @secret_access_key = secret_access_key || ENV['AWS_SECRET_ACCESS_KEY']
+      def initialize(credentials:, bucket: nil, prefix_key: nil)
+        @credentials = credentials
         @bucket = bucket
         @prefix_key = prefix_key
       end
@@ -19,8 +18,24 @@ module AssetsDeployment
       private
 
       def client
-        @client ||= ::Aws::S3::Client.new(access_key_id: @access_key_id, secret_access_key: @secret_access_key)
+        @client ||= ::Aws::S3::Client.new(credentials: credentials)
       end
-   end
+
+      def credentials
+        if !access_key_id&.empty? && !secret_access_key&.empty?
+          Aws::Credentials.new(access_key_id, secret_access_key)
+        else
+          Aws::InstanceProfileCredentials.new
+        end
+      end
+
+      def access_key_id
+        @credentials[:access_key_id] || ENV['AWS_ACCESS_KEY_ID']
+      end
+
+      def secret_access_key
+        @credentials[:secret_access_key] || ENV['AWS_SECRET_ACCESS_KEY']
+      end
+    end
   end
 end
