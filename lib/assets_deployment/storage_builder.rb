@@ -19,7 +19,8 @@ module AssetsDeployment
         Storage::AwsS3.new(
           credentials: @credentials,
           bucket: @options[:bucket],
-          prefix_key: @options[:prefix_key]
+          prefix_key: @options[:prefix_key],
+          region: @options[:region]
         )
       else
         raise InvalidStorageError

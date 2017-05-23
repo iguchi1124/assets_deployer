@@ -3,10 +3,11 @@ require 'aws-sdk'
 module AssetsDeployment
   module Storage
     class AwsS3 < Base
-      def initialize(credentials:, bucket: nil, prefix_key: nil)
+      def initialize(credentials:, region: nil, bucket: nil, prefix_key: nil)
         @credentials = credentials
         @bucket = bucket
         @prefix_key = prefix_key
+        @region = region || ENV['AWS_REGION']
       end
 
       def upload(files)
@@ -18,7 +19,14 @@ module AssetsDeployment
       private
 
       def client
-        @client ||= ::Aws::S3::Client.new(credentials: credentials)
+        @client ||= Aws::S3::Client.new(client_options)
+      end
+
+      def client_options
+        hash = {}
+        hash[:credentials] = credentials
+        hash[:region] = @region if @region
+        hash
       end
 
       def credentials
