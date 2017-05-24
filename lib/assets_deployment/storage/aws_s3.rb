@@ -7,7 +7,7 @@ module AssetsDeployment
         @credentials = credentials
         @bucket = bucket
         @prefix_key = prefix_key
-        @region = region || ENV['AWS_REGION']
+        @region = region
       end
 
       def upload(files)
@@ -25,12 +25,12 @@ module AssetsDeployment
       def client_options
         hash = {}
         hash[:credentials] = credentials
-        hash[:region] = @region if @region
+        hash[:region] = region if !region.nil? && !region.empty?
         hash
       end
 
       def credentials
-        if !access_key_id&.empty? && !secret_access_key&.empty?
+        if access_key_id && secret_access_key
           Aws::Credentials.new(access_key_id, secret_access_key)
         else
           Aws::InstanceProfileCredentials.new
@@ -43,6 +43,10 @@ module AssetsDeployment
 
       def secret_access_key
         @credentials[:secret_access_key] || ENV['AWS_SECRET_ACCESS_KEY']
+      end
+
+      def region
+        @region || ENV['AWS_REGION']
       end
     end
   end
