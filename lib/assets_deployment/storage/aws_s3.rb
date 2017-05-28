@@ -12,7 +12,12 @@ module AssetsDeployment
 
       def upload(files)
         files.each do |file|
-          client.put_object(bucket: @bucket, key: [@prefix_key, file.key].compact.join('/'), body: file.body)
+          client.put_object(
+            bucket: @bucket,
+            key: [@prefix_key, file.key].compact.join('/'),
+            body: file.body,
+            content_type: file.content_type
+          )
         end
       end
 

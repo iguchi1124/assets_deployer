@@ -1,3 +1,5 @@
+require 'mime/types'
+
 module AssetsDeployment
   class AssetFile
     attr_reader :prefix
@@ -13,6 +15,10 @@ module AssetsDeployment
 
     def body
       File.new(@path)
+    end
+
+    def content_type
+      MIME::Types.type_for(@path).first.to_s
     end
   end
 end
