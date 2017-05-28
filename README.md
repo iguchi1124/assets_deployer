@@ -1,4 +1,4 @@
-# AssetsDeployment
+# AssetsDeployer
 Short description and motivation.
 
 ## Usage
@@ -8,7 +8,7 @@ How to use my plugin.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'assets_deployment'
+gem 'assets_deployer'
 ```
 
 And then execute:
@@ -18,7 +18,7 @@ $ bundle
 
 Or install it yourself as:
 ```bash
-$ gem install assets_deployment
+$ gem install assets_deployer
 ```
 
 ## Contributing

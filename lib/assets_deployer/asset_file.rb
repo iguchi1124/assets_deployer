@@ -1,6 +1,6 @@
 require 'mime/types'
 
-module AssetsDeployment
+module AssetsDeployer
   class AssetFile
     attr_reader :prefix
 

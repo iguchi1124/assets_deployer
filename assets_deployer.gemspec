@@ -1,10 +1,10 @@
 $:.push File.expand_path("lib", __dir__)
 
-require 'assets_deployment/version'
+require 'assets_deployer/version'
 
 Gem::Specification.new do |s|
-  s.name        = 'assets_deployment'
-  s.version     = AssetsDeployment::VERSION
+  s.name        = 'assets_deployer'
+  s.version     = AssetsDeployer::VERSION
   s.authors     = ['Shota Iguchi']
   s.email       = ['shota-iguchi@cookpad.com']
   s.summary     = 'Rails assets deployer'

@@ -1,6 +1,6 @@
-require 'assets_deployment/asset_file'
+require 'assets_deployer/asset_file'
 
-module AssetsDeployment
+module AssetsDeployer
   class Deployer
     def initialize(storage:, root_path:, prefixes:)
       @storage = storage

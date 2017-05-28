@@ -1,6 +1,6 @@
 require 'aws-sdk'
 
-module AssetsDeployment
+module AssetsDeployer
   module Storage
     class AwsS3 < Base
       def initialize(credentials:, region: nil, bucket: nil, prefix_key: nil)

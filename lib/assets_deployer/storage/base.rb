@@ -1,4 +1,4 @@
-module AssetsDeployment
+module AssetsDeployer
   module Storage
     class Base
       def upload

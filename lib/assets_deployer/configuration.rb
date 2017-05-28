@@ -1,4 +1,4 @@
-module AssetsDeployment
+module AssetsDeployer
   class Configuration
     attr_accessor :storage,
                   :assets_root_path,

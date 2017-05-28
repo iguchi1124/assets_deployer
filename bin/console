@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'bundler/setup'
-require 'assets_deployment'
+require 'assets_deployer'
 require 'pry'
 
 Pry.start

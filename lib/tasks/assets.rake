@@ -1,5 +1,5 @@
 namespace :assets do
   task deploy: :environment do
-    AssetsDeployment.run
+    AssetsDeployer.run
   end
 end

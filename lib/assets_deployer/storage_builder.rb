@@ -1,7 +1,7 @@
-require 'assets_deployment/storage/base'
-require 'assets_deployment/storage/aws_s3'
+require 'assets_deployer/storage/base'
+require 'assets_deployer/storage/aws_s3'
 
-module AssetsDeployment
+module AssetsDeployer
   class StorageBuilder
     class InvalidStorageError < StandardError
     end

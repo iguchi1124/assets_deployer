@@ -1,8 +1,8 @@
-require 'assets_deployment/deployer'
-require 'assets_deployment/configuration'
-require 'assets_deployment/storage_builder'
+require 'assets_deployer/deployer'
+require 'assets_deployer/configuration'
+require 'assets_deployer/storage_builder'
 
-module AssetsDeployment
+module AssetsDeployer
   def self.run
     deployer = Deployer.new(storage: storage, root_path: config.assets_root_path, prefixes: config.assets_prefixes)
     deployer.run
@@ -28,4 +28,4 @@ module AssetsDeployment
   end
 end
 
-require 'assets_deployment/engine' if defined?(Rails)
+require 'assets_deployer/engine' if defined?(Rails)
