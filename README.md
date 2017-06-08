@@ -24,12 +24,11 @@ $ gem install assets_deployer
 Add initializer at `config/iniitializers/assets_deployer.rb`
 ```rb
 AssetsDeployer.configure do |config|
-  config.assets_root_path = Rails.root.join('public')
-  config.assets_prefixes  = ['assets', 'packs']
-  # your storage
-  config.storage.platform = 'AWS'
-  config.storage.name     = 'S3'
-  # bucket and assets prefix key
+  config.assets.root_path   = Rails.root.join('public')
+  config.assets.prefix_paths = ['assets', 'packs']
+  config.assets.ignore_paths = ['packs/manifest.json']
+  # your storage service configurations
+  config.storage.name = 'S3'
   config.storage.options[:bucket]     = 'bucket_name'
   config.storage.options[:prefix_key] = 'project_name'
   # credentials

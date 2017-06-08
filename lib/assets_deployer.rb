@@ -4,7 +4,13 @@ require 'assets_deployer/storage_builder'
 
 module AssetsDeployer
   def self.run
-    deployer = Deployer.new(storage: storage, root_path: config.assets_root_path, prefixes: config.assets_prefixes)
+    deployer = Deployer.new(
+      storage: storage,
+      root_path: config.assets.root_path,
+      prefix_paths: config.assets.prefix_paths,
+      ignore_paths: config.assets.ignore_paths
+    )
+
     deployer.run
   end
 

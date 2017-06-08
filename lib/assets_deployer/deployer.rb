@@ -2,10 +2,11 @@ require 'assets_deployer/asset_file'
 
 module AssetsDeployer
   class Deployer
-    def initialize(storage:, root_path:, prefixes:)
+    def initialize(storage:, root_path:, prefix_paths:, ignore_paths:)
       @storage = storage
       @root_path = root_path
-      @prefixes = prefixes
+      @prefix_paths = prefix_paths
+      @ignore_paths = ignore_paths
     end
 
     def run
@@ -15,9 +16,9 @@ module AssetsDeployer
     private
 
     def files
-      @files ||= @prefixes.flat_map do |prefix|
+      @files ||= @prefix_paths.flat_map do |prefix|
         Dir.glob(@root_path.join(prefix).join('**', '**')).map do |path|
-          AssetFile.new(prefix, path) if Pathname.new(path).file?
+          AssetFile.new(prefix, path) if Pathname.new(path).file? && !@ignore_paths.include?(path)
         end
       end.compact
     end

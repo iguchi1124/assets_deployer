@@ -6,16 +6,15 @@ module AssetsDeployer
     class InvalidStorageError < StandardError
     end
 
-    def initialize(platform:, name:, credentials:, options:)
-      @platform = platform
+    def initialize(name:, credentials:, options:)
       @name = name
       @credentials = credentials
       @options = options
     end
 
     def build
-      case [@platform, @name]
-      when ['AWS', 'S3']
+      case @name
+      when 'S3'
         Storage::AwsS3.new(
           credentials: @credentials,
           bucket: @options[:bucket],
