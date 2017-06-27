@@ -24,7 +24,6 @@ module AssetsDeployer
 
   def self.storage
     builder = StorageBuilder.new(
-      platform: config.storage.platform,
       name: config.storage.name,
       credentials: config.storage.credentials,
       options: config.storage.options
