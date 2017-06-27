@@ -6,7 +6,7 @@ module AssetsDeployer
       @storage = storage
       @root_path = root_path
       @prefix_paths = prefix_paths
-      @ignore_paths = ignore_paths
+      @ignore_paths = ignore_paths.map { |path| File.join(root_path, path) }
     end
 
     def run
